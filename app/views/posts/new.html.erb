@@ -1,0 +1,14 @@
+<h1>GeekTwitter</h1>
+<h3>新規Tweet</h3>
+<%= form_for @post do |f| %>
+    <div class="field">
+        <%= f.label :body %>
+        <%= f.text_field :body, :size => 140 %>
+    </div>
+    <div class="field">
+        <%= f.label :image %>
+        <%= f.file_field :image %>
+    </div>
+    <%= f.submit "tweetする" %>
+<% end %>
+<%= link_to '画像投稿一覧へ', posts_path %>

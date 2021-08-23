@@ -1,0 +1,61 @@
+<header>
+    <h1>GeekInstgram</h1>
+    <div class="top_link">
+      <%= link_to "ホーム", posts_path %>
+      &nbsp&nbsp
+      <%= link_to "新規投稿",new_post_path %>
+      &nbsp&nbsp
+      <% if user_signed_in? %>
+       <%= link_to "マイページへ", user_path(current_user.id) %>　
+      <% end %>
+    </div>
+</header>
+<h1>マイページ</h1>
+<p>名前 : <%= @user.name %></p>
+<div class="pic"><%= image_tag @user.image_url, size: "250×250" if @user.image? %></div>
+<p>メールアドレス : <%= @user.email %></p>
+<p>プロフィール : <%= @user.profile %></p>
+
+<% if current_user.id == @user.id %>
+  <%= link_to "編集する", edit_user_registration_path %>
+<% end %>
+
+<h3>ユーザー詳細</h3>
+
+<h3><%= @user.email %></h3>
+
+<% if @user.id == current_user.id %>
+
+<% else %>
+  <% if @isRoom == true %>
+    <p><a href="/rooms/<%= @roomId %>">チャットへ</a>
+  <% else %>
+    <%= form_for @room do |f| %>
+      <%= fields_for @entry do |e| %>
+        <%= e.hidden_field :user_id, :value=> @user.id %>
+      <% end %>
+      <%= f.submit "チャットを始める" %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= link_to "ユーザー一覧に戻る", users_path %>
+
+<h2>ユーザーの投稿一覧</h2>
+<% @user.posts.each do |t| %>
+  <%= t.user.name %>
+  <br>
+  <%= image_tag t.image_url, size: "250x200" if t.image? %>
+  <br>
+  <%= t.body %>
+<% end %>
+
+<h2>ユーザーがいいねした投稿一覧</h2>
+<% @user.liked_posts.each do |t| %>
+  <%= t.user.name %>
+  <br>
+  <%= image_tag t.image_url, size: "250x200" if t.image? %>
+  <br>
+  <%= t.body %>
+<% end %>
+<%= link_to "Tweet一覧に戻る", posts_path %>

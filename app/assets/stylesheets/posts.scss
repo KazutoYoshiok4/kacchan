@@ -1,0 +1,17 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.posts_container{
+    overflow-y: scroll;
+    min-height: 100vh;
+    position: relative;/*←相対位置*/
+}
+
+.col-sm-6{
+    background-color: rgb(216, 212, 212);
+}
+
+.top_link{
+    margin-left: 160vh;
+}
