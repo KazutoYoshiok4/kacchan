@@ -7,6 +7,7 @@ class PostsController < ApplicationController
     else
       @posts = Post.all
     end
+    @posts = Post.all
   end
 
   def new

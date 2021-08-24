@@ -1,4 +1,15 @@
-<h1>GeekInstgram</h1>
+<header>
+    <h1>GeekInstgram</h1>
+    <div class="top_link">
+      <%= link_to "ホーム", posts_path %>
+      &nbsp&nbsp
+      <%= link_to "新規投稿",new_post_path %>
+      &nbsp&nbsp
+      <% if user_signed_in? %>
+       <%= link_to "マイページへ", user_path(current_user.id) %>　
+      <% end %>
+    </div>
+</header>
 <h3>Tweet詳細</h3>
 <div class="post">
   <%= image_tag @post.image_url, size: "250x200" if @post.image? %>
@@ -30,7 +41,7 @@
       <%= c.user.email unless c.user.blank? %>
       <br>
       <%= c.content %>
-      <%= link_to "削除する", post_comment_path(c.id), method: :delete %>
+      <%= link_to "削除する", post_comment_path(@post.id, c.id), method: :delete %>
     </div>
       <br>
   <% end %>

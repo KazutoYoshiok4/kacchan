@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
 
     def destroy
         post = Post.find(params[:post_id])
-        comment = @comments.find(params[:id])
+        comment = Comment.find(params[:id])
         comment.destroy
         redirect_to :action => "show", :controller => "posts"
     end

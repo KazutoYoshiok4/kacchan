@@ -1,5 +1,9 @@
 class RoomsController < ApplicationController
-    before_action :authenticate_user!
+    before_action :authenticate_user!   
+    def index
+        @room = Room.find(params[:id])
+    end
+
     def create
         @room = Room.create
         @entry1 = Entry.create(:room_id => @room.id, :user_id => current_user.id)
