@@ -1,10 +1,8 @@
 <header>
     <h1>GeekInstgram</h1>
     <div class="top_link">
-      <%= link_to "ホーム", posts_path %>
-      &nbsp&nbsp
       <%= link_to "新規投稿",new_post_path %>
-      &nbsp&nbsp
+      &nbsp&nbsp&nbsp&nbsp
       <% if user_signed_in? %>
        <%= link_to "マイページへ", user_path(current_user.id) %>　
       <% end %>
@@ -49,7 +47,6 @@
           <% end %>
         </div>
       <% end %>
-      <%= link_to '画像投稿ページへ', new_post_path %>
       <%= button_to 'ログアウト', destroy_user_session_path, method: :delete %>
     </div>
     <div class="col-sm-3">
